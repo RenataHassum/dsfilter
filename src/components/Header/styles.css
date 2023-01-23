@@ -21,3 +21,10 @@
   font-weight: 700;
   font-size: 12px;
 }
+
+@media (max-width: 960px) {
+  .container-header-960 {
+    padding-left:20px;
+    padding-right: 20px;
+  }
+}
