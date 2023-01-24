@@ -8,7 +8,9 @@ export default function FilterButton({ text }: Props) {
   return (
     <>
       <div>
-        <button className='button-dsfilter'>{text}</button>
+        <button type="submit" className="button-dsfilter">
+          {text}
+        </button>
       </div>
     </>
   );

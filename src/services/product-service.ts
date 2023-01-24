@@ -7,7 +7,7 @@ export function findByPrice(min: number, max: number): ProductDTO[] {
 }
 
 export function findAll(): ProductDTO[] {
-  return products;
+  return products.sort((x, y) => x.price - y.price);
 }
 
 const products: ProductDTO[] = [

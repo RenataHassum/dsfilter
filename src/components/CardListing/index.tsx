@@ -8,7 +8,7 @@ type Props = {
 export default function CardListing({ products }: Props) {
   return (
     <>
-      <form>
+      <section>
         <div className=" card-listing-dsfilter container-body">
           {products.map((product) => (
             <div key={product.id} className="product-dsfilter">
@@ -17,7 +17,7 @@ export default function CardListing({ products }: Props) {
             </div>
           ))}
         </div>
-      </form>
+      </section>
     </>
   );
 }
