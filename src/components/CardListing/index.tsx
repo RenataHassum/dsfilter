@@ -1,21 +1,19 @@
-import { ProductDTO } from '../../models/product';
+import { ProductDTO } from '../../types';
 import './styles.css';
 
 type Props = {
-  products: ProductDTO[];
+  product: ProductDTO;
 };
 
-export default function CardListing({ products }: Props) {
+export default function CardListing({ product }: Props) {
   return (
     <>
       <section>
         <div className=" card-listing-dsfilter container-body">
-          {products.map((product) => (
-            <div key={product.id} className="product-dsfilter">
-              <h3>{product.name}</h3>
-              <p>R$ {product.price.toFixed(2)}</p>
-            </div>
-          ))}
+          <div className="product-dsfilter">
+            <h3>{product.name}</h3>
+            <p>R$ {product.price.toFixed(2)}</p>
+          </div>
         </div>
       </section>
     </>

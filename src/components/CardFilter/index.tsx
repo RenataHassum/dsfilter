@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FilterButton from '../FilterButton';
 import './styles.css';
 import * as productService from '../../services/product-service';
@@ -8,45 +8,26 @@ type FormData = {
   maxPrice: number;
 };
 
-// type Props = {
-//   onFilter: Function;
-// };
+type Props = {
+  onFilter: (arg1: number, arg2: number) => void;
+};
 
-export default function CardFilter() {
+export default function CardFilter({ onFilter }: Props) {
   const [formData, setFormData] = useState<FormData>({
     minPrice: 0,
     maxPrice: 0,
   });
 
-  // useEffect(() => {
-  //   console.log('Passou no effect', formData.minPrice, formData.maxPrice);
-  //   const prod = productService.findByPrice(
-  //     formData.minPrice,
-  //     formData.maxPrice,
-  //   );
-  //   console.log('Produtos:', prod);
-  //   // onFilter(prod);
-  // }, [formData]);
-
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    const name = event.target.name;
+    const { value } = event.target;
+    const { name } = event.target;
     setFormData({ ...formData, [name]: value });
   }
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(formData.minPrice || 0);
-    console.log(formData.maxPrice || Number.MAX_VALUE);
-
-    console.log('Passou no filtrar', formData.minPrice, formData.maxPrice);
-    const prod = productService.findByPrice(
-      formData.minPrice,
-      formData.maxPrice,
-    );
-    console.log('Produtos:', prod);
-
-    // onFilter(formData.minPrice, formData.maxPrice);
+   
+    onFilter(Number(formData.minPrice), formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE);
   }
 
   return (
