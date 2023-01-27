@@ -10,7 +10,7 @@ export default function ListingBody() {
   const [minPrice, setMinPrice] = React.useState<number>(0);
   const [maxPrice, setMaxPrice] = React.useState<number>(0);
 
-  const handleGetPrices = (minPrice: number, maxPrice: number) => {
+  const handleOnFilter = (minPrice: number, maxPrice: number) => {
     setMinPrice(minPrice);
     setMaxPrice(maxPrice);
   };
@@ -30,7 +30,8 @@ export default function ListingBody() {
 
   return (
     <main className="container-body-960">
-      <CardFilter onFilter={handleGetPrices} />
+      <CardFilter onFilter={handleOnFilter} />
+
       {products.map((product) => (
         <CardListing key={product.id} product={product} />
       ))}

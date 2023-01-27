@@ -25,9 +25,7 @@ export default function CardFilter({ onFilter }: FilterProps) {
 
     onFilter(
       Number(formData.minPrice),
-      formData.maxPrice
-        ? Number(formData.maxPrice)
-        : Number.MAX_VALUE,
+      formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE,
     );
 
     setContextNumberCount(
