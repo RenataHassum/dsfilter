@@ -20,6 +20,7 @@
 
 .card-filter-dsfilter input:focus {
   outline: 1px solid var(--border-min-max);
+  color: var(--font-input);
 }
 
 .card-filter-dsfilter input::placeholder {

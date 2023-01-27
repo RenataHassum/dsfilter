@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FilterButton from '../FilterButton';
 import './styles.css';
 import { FilterProps, FormData } from '../../types';
+import { ContextNumberCount } from '../../types/utils/context-number';
+import * as productService from '../../services/product-service';
 
 export default function CardFilter({ onFilter }: FilterProps) {
   const [formData, setFormData] = useState<FormData>({
     minPrice: 0,
     maxPrice: 0,
   });
+
+  const { contextNumberCount, setContextNumberCount } =
+    useContext(ContextNumberCount);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
@@ -20,7 +25,13 @@ export default function CardFilter({ onFilter }: FilterProps) {
 
     onFilter(
       Number(formData.minPrice),
-      formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE,
+      formData.maxPrice
+        ? Number(formData.maxPrice)
+        : Number.MAX_VALUE,
+    );
+
+    setContextNumberCount(
+      productService.findByPrice(formData.minPrice, formData.maxPrice).length,
     );
   }
 
