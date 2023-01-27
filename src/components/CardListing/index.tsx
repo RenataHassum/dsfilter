@@ -1,11 +1,7 @@
-import { ProductDTO } from '../../types';
+import { CardListProps } from '../../types';
 import './styles.css';
 
-type Props = {
-  product: ProductDTO;
-};
-
-export default function CardListing({ product }: Props) {
+export default function CardListing({ product }: CardListProps) {
   return (
     <>
       <section>

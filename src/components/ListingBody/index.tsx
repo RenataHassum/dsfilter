@@ -15,7 +15,7 @@ export default function ListingBody() {
     setMaxPrice(maxPrice);
   };
 
-  const fetchProducts = React.useCallback(() => {
+  React.useEffect(() => {
     const loadProducts: ProductDTO[] = productService.findAll();
     setProducts(loadProducts);
 
@@ -27,10 +27,6 @@ export default function ListingBody() {
       setProducts(filteredProducts);
     }
   }, [setProducts, minPrice, maxPrice]);
-
-  React.useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
 
   return (
     <main className="container-body-960">

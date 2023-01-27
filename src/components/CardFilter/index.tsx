@@ -1,18 +1,9 @@
 import { useState } from 'react';
 import FilterButton from '../FilterButton';
 import './styles.css';
-import * as productService from '../../services/product-service';
+import { FilterProps, FormData } from '../../types';
 
-type FormData = {
-  minPrice: number;
-  maxPrice: number;
-};
-
-type Props = {
-  onFilter: (arg1: number, arg2: number) => void;
-};
-
-export default function CardFilter({ onFilter }: Props) {
+export default function CardFilter({ onFilter }: FilterProps) {
   const [formData, setFormData] = useState<FormData>({
     minPrice: 0,
     maxPrice: 0,
@@ -26,8 +17,11 @@ export default function CardFilter({ onFilter }: Props) {
 
   function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-   
-    onFilter(Number(formData.minPrice), formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE);
+
+    onFilter(
+      Number(formData.minPrice),
+      formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE,
+    );
   }
 
   return (
