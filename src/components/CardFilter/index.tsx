@@ -24,7 +24,7 @@ export default function CardFilter({ onFilter }: FilterProps) {
     event.preventDefault();
 
     onFilter(
-      Number(formData.minPrice),
+      formData.minPrice ? Number(formData.minPrice) : 0,
       formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE,
     );
 
