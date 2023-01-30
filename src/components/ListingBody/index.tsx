@@ -1,32 +1,34 @@
 import React from 'react';
 import * as productService from '../../services/product-service';
-import { ProductDTO } from '../../types';
+import { ProductDTO, QueryParams } from '../../types';
 import CardFilter from '../CardFilter';
 import CardListing from '../CardListing';
 import './styles.css';
 
 export default function ListingBody() {
   const [products, setProducts] = React.useState<ProductDTO[]>([]);
-  const [minPrice, setMinPrice] = React.useState<number>(0);
-  const [maxPrice, setMaxPrice] = React.useState<number>(0);
 
-  const handleOnFilter = (minPrice: number, maxPrice: number) => {
-    setMinPrice(minPrice);
-    setMaxPrice(maxPrice);
-  };
+  const [queryParams, setQueryParams] = React.useState<QueryParams>({
+    minPrice: 0,
+    maxPrice: 0,
+  });
 
   React.useEffect(() => {
     const loadProducts: ProductDTO[] = productService.findAll();
     setProducts(loadProducts);
 
-    if (minPrice !== 0 || maxPrice !== 0) {
+    if (queryParams.minPrice !== 0 || queryParams.maxPrice !== 0) {
       const filteredProducts: ProductDTO[] = productService.findByPrice(
-        minPrice,
-        maxPrice,
+        queryParams.minPrice,
+        queryParams.maxPrice,
       );
       setProducts(filteredProducts);
     }
-  }, [setProducts, minPrice, maxPrice]);
+  }, [setProducts, queryParams.minPrice, queryParams.maxPrice]);
+
+  const handleOnFilter = (minPrice: number, maxPrice: number) => {
+    setQueryParams({ ...queryParams, minPrice, maxPrice });
+  };
 
   return (
     <main className="container-body-960">

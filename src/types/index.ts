@@ -16,3 +16,8 @@ export type FilterProps = {
 export type CardListProps = {
   product: ProductDTO;
 };
+
+export type QueryParams = {
+  minPrice: number;
+  maxPrice: number;
+};

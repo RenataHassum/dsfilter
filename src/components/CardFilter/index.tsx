@@ -6,13 +6,13 @@ import { ContextNumberCount } from '../../types/utils/context-number';
 import * as productService from '../../services/product-service';
 
 export default function CardFilter({ onFilter }: FilterProps) {
+  const { contextNumberCount, setContextNumberCount } =
+    useContext(ContextNumberCount);
+
   const [formData, setFormData] = useState<FormData>({
     minPrice: 0,
     maxPrice: 0,
   });
-
-  const { contextNumberCount, setContextNumberCount } =
-    useContext(ContextNumberCount);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
