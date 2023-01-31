@@ -6,9 +6,6 @@ import { ContextNumberCount } from '../../types/utils/context-number';
 import * as productService from '../../services/product-service';
 
 export default function CardFilter({ onFilter }: FilterProps) {
-  const { contextNumberCount, setContextNumberCount } =
-    useContext(ContextNumberCount);
-
   const [formData, setFormData] = useState<FormData>({
     minPrice: 0,
     maxPrice: 0,
@@ -26,10 +23,6 @@ export default function CardFilter({ onFilter }: FilterProps) {
     onFilter(
       formData.minPrice ? Number(formData.minPrice) : 0,
       formData.maxPrice ? Number(formData.maxPrice) : Number.MAX_VALUE,
-    );
-
-    setContextNumberCount(
-      productService.findByPrice(formData.minPrice, formData.maxPrice).length,
     );
   }
 
